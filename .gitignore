@@ -1,0 +1,18 @@
+# Backend Spring Boot
+backend/target/
+backend/.mvn/
+backend/*.log
+
+# Frontend Angular
+frontend/node_modules/
+frontend/dist/
+frontend/.angular/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+.DS_Store
+
+# Env
+*.env
