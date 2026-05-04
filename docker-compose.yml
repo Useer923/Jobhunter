@@ -1,0 +1,23 @@
+services:
+
+  backend:
+    build: ./backend
+    container_name: jobhunter-backend
+    ports:
+      - "8080:8080"
+    networks:
+      - jobhunter-network
+
+  frontend:
+    build: ./frontend
+    container_name: jobhunter-frontend
+    ports:
+      - "4200:80"  # Nginx tourne sur 80, on expose sur 4200
+    depends_on:
+      - backend
+    networks:
+      - jobhunter-network
+
+networks:
+  jobhunter-network:
+    driver: bridge

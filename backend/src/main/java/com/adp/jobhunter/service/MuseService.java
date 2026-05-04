@@ -22,7 +22,10 @@ public class MuseService {
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     private static final String MUSE_API_URL =
-            "https://www.themuse.com/api/public/jobs?page=1&descending=true";
+            "https://www.themuse.com/api/public/jobs" +
+                    "?category=Data+and+Analytics" +
+                    "&page=1" +
+                    "&descending=true";
 
     @Transactional
     public List<Offre> fetchAndSaveOffres() {
