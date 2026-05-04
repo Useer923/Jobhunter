@@ -1,0 +1,56 @@
+<!-- TEMPLATE — offre-list.component.html -->
+<!-- C'est la vue — ce que l'utilisateur voit -->
+
+<div class="container">
+
+  <div class="search-bar">
+    <input
+      type="text"
+      [(ngModel)]="keyword"
+      (input)="filterOffres()"
+      placeholder="Rechercher une offre..."
+      class="search-input"
+    />
+  </div>
+
+  <div *ngIf="isLoading" class="loading">
+    Chargement des offres...
+  </div>
+
+  <div *ngIf="errorMessage" class="error">
+    {{ errorMessage }}
+  </div>
+
+  <p class="results-count">
+    {{ filteredOffres.length }} offre(s) trouvée(s)
+  </p>
+
+  <div *ngFor="let offre of filteredOffres" class="offre-card">
+
+    <div class="offre-header">
+      <h2 class="offre-titre">{{ offre.titre }}</h2>
+      <span class="offre-contrat">{{ offre.niveau }}</span>
+    </div>
+
+    <div class="offre-info">
+      <span>🏢 {{ offre.entreprise }}</span>
+      <span>📍 {{ offre.localisation }}</span>
+      <span>📂 {{ offre.categorie }}</span>
+    </div>
+
+    <div class="offre-footer">
+      <a [href]="offre.lienOffre" target="_blank" class="offre-link">
+        Voir l'offre →
+      </a>
+      <span class="offre-date">
+        {{ offre.datePublication | date:'dd/MM/yyyy' }}
+      </span>
+    </div>
+
+  </div>
+
+  <div *ngIf="filteredOffres.length === 0 && !isLoading" class="no-results">
+    Aucune offre trouvée pour "{{ keyword }}"
+  </div>
+
+</div>
